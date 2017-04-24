@@ -64,12 +64,12 @@ func doMap(
 
 	// Stat() return the file info
 	info, err := file.Stat()
-
-	contents := make([]byte, info.Size())
-	file.Read(contents)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	contents := make([]byte, info.Size())
+	file.Read(contents)
 
 	file.Close()
 

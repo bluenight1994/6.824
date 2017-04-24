@@ -50,6 +50,8 @@ func doReduce(
 	// }
 	// file.Close()
 	//
+
+	// map[KeyType]ValueType
 	keyValues := make(map[string][]string)
 
 	for i := 0; i < nMap; i++ {
@@ -57,10 +59,10 @@ func doReduce(
 		if err != nil {
 			fmt.Printf("file can't not be opened\n")
 		} else {
-			enc := json.NewDecoder(file)
+			dec := json.NewDecoder(file)
 			for {
 				var kv KeyValue
-				err := enc.Decode(&kv)
+				err := dec.Decode(&kv)
 				if err != nil {
 					break
 				}
@@ -75,7 +77,7 @@ func doReduce(
 	}
 
 	var keys []string
-	for k,_ := range keyValues {
+	for k, _ := range keyValues {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
