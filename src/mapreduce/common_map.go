@@ -74,7 +74,7 @@ func doMap(
 	file.Close()
 
 	kv := mapF(inFile, string(contents))
-	filesenc := make([]json.Encoder, nReduce)
+	filesenc := make([]*json.Encoder, nReduce)
 	files := make([]*os.File, nReduce)
 
 	for i := range filesenc {
